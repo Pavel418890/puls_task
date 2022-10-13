@@ -1,5 +1,11 @@
 ### Необходимые зависимости:
-[Redis](https://redis.io/download/) > v.6.0.9 или докер контейнер
+[Redis](https://redis.io/download/) > v.6.0.9 
+```shell
+redis-server <path_to_project>/redis/redis.conf
+```
+
+или докер контейнер
+
 ```shell
 docker pull redis
 docker run -d --name <container_name> -p <port>:6379 -v <path_to_project>/redis:/usr/local/etc/redis redis redis-server /usr/local/etc/redis/redis.conf
