@@ -70,18 +70,19 @@ redis_pool = ConnectionPool(
 )
 
 def run(id_: int):
-        with PulsTask(StrictRedis(connection_pool=redis_pool)) as pt:
-            for i in range(1, 63):
-                (f"TASK {id_} RESULT{pt.get_post(i)}")
+   with PulsTask(StrictRedis(connection_pool=redis_pool)) as pt:
+       for i in range(1, 63):
+           return (f"TASK {id_} RESULT{pt.get_post(i)}")
 
     tasks = []
-    for i in range(os.cpu_count()):
-        p = multiprocessing.Process(target=run, args=(i, ))
-        tasks.append(p)
 
-    for t in tasks:
-        t.start()
+for i in range(os.cpu_count()):
+    p = multiprocessing.Process(target=run, args=(i, ))
+    tasks.append(p)
 
-    for t in tasks:
-        t.join()
+for t in tasks:
+    t.start()
+
+for t in tasks:
+    t.join()
 ```
